@@ -21,6 +21,9 @@ function init()
 	monsters = [];
 	generateMap();
 	generateMonsters();
+	var pos = convertMapPosition(7,5);
+	var tower = new Tower(pos.x, pos.y);
+	graphic_engine.drawables.push(tower);
 	return setInterval(main_loop, 10);
 }
 
@@ -54,7 +57,7 @@ function generateMonsters()
 function main_loop()
 {
 	ai_step();
-	for (var i=0; i<4; i++)	physic_engine.do_step();
+	for (var i=0; i<1; i++)	physic_engine.do_step();
 	graphic_engine.draw(ctx);
 }
 

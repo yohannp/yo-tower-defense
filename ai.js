@@ -95,8 +95,8 @@ function compute_direction(monster)
 	var dx = monster.destination.x - monster.location.x;
 	var dy = monster.destination.y - monster.location.y;
 
-	var dt = Math.sqrt(dx*dx + dy*dy);
+	var dt = Math.atan(dy/dx);
 
-	monster.direction.dx = dx/dt;
-	monster.direction.dy = dy/dt;
+	if (dx<0) dt+=Math.PI;
+	monster.angle = dt;
 }

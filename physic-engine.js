@@ -11,9 +11,11 @@ function PhysicEngine(name)
 			var po = this.physic_objects[i];
 			var x = po.location.x;
 			var y = po.location.y;
-			var direction = po.direction;
-			var dx = direction.dx;
-			var dy = direction.dy;
+			var angle = po.angle;
+			var speed = po.speed;
+
+			var dx = speed*Math.cos(angle);
+			var dy = speed*Math.sin(angle);
 
 			x += dx;
 			y += dy;
