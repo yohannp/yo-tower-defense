@@ -6,12 +6,11 @@ var HEIGHT=768;
 
 
 var monsters;
-
+var towers;
 
 var physic_engine;
 var graphic_engine;
 
-var tower;
 
 function init()
 {
@@ -21,11 +20,21 @@ function init()
 	graphic_engine = new GraphicEngine(WIDTH, HEIGHT);
 	graphic_engine.drawables.push(new Grid());
 	monsters = [];
+	towers = [];
 	generateMap();
 	generateMonsters();
-	var pos = convertMapPosition(7,5);
-	tower = new Tower(pos.x, pos.y);
-	graphic_engine.drawables.push(tower);
+
+	var poss = [
+			{x:7, y:5},
+			{x:1, y:5},	
+		];
+	for (var p in poss)
+	{
+		var pos = convertMapPosition(poss[p].x,poss[p].y);
+		var tower = new Tower(pos.x, pos.y);
+		towers.push(tower);
+		graphic_engine.drawables.push(tower);
+	}
 	return setInterval(main_loop, 10);
 }
 
@@ -58,7 +67,7 @@ function generateMonsters()
 
 function main_loop()
 {
-	tower.ai_step(monsters);
+	for (var i in towers) towers[i].ai_step(towers.concat(monsters));
 	ai_step();
 	for (var i=0; i<4; i++)	physic_engine.do_step();
 	graphic_engine.draw(ctx);
