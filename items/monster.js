@@ -28,10 +28,17 @@ function Monster(x,y)
 
 		ctx.fillStyle = "rgba(0,255,0,1)";
 		ctx.fillRect(this.location.x-20 + .5 - 1, this.location.y-20 + .5, 40, 4);
-	
+
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(this.location.x-20 + .5 - 1, this.location.y-20 + .5, 40, 4);
+	}
 
-
+	this.ai_step = function(environment_objects)
+	{
+		if (destination_is_reached(this))
+		{
+			compute_new_destination(this);
+			compute_direction(this);
+		}
 	}
 }

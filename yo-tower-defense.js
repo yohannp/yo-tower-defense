@@ -67,8 +67,9 @@ function generateMonsters()
 
 function main_loop()
 {
-	for (var i in towers) towers[i].ai_step(towers.concat(monsters));
-	ai_step();
+	var ai_objects = [].concat(towers,monsters);
+	for (var i in ai_objects) ai_objects[i].ai_step(ai_objects);
+		
 	for (var i=0; i<4; i++)	physic_engine.do_step();
 	graphic_engine.draw(ctx);
 }

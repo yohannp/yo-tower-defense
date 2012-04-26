@@ -1,17 +1,3 @@
-function ai_step()
-{
-	for (var i in monsters)
-	{
-		var monster = monsters[i];
-		if (destination_is_reached(monster))
-		{
-			compute_new_destination(monster);
-			compute_direction(monster);
-		}
-	}
-}
-
-
 
 function destination_is_reached(monster)
 {
