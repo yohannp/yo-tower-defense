@@ -12,10 +12,6 @@ function ai_step()
 }
 
 
-function compute_squared_distance(a,b)
-{
-	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
-}
 
 function destination_is_reached(monster)
 {
@@ -90,13 +86,8 @@ function compute_new_destination(monster)
 }
 
 
+
 function compute_direction(monster)
 {
-	var dx = monster.destination.x - monster.location.x;
-	var dy = monster.destination.y - monster.location.y;
-
-	var dt = Math.atan(dy/dx);
-
-	if (dx<0) dt+=Math.PI;
-	monster.angle = dt;
+	monster.angle = compute_angle(monster.location, monster.destination);
 }

@@ -24,4 +24,24 @@ function Tower(x,y)
    		ctx.fillRect(0,-3,15,6);
    		ctx.restore();
 	}
+
+
+	this.ai_step = function(environment_objects)
+	{
+		for (var i in environment_objects)
+		{
+			var obj = environment_objects[i];
+			if (obj instanceof Monster)
+			{
+				//Check if monster is inside tower radius
+				var threshold = 150;
+				var d = compute_squared_distance(this.location, obj.location);
+				if (threshold*threshold >= d)
+				{
+					this.angle = compute_angle(this.location, obj.location);
+					return;
+				}
+			}
+		}
+	}
 }
